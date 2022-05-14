@@ -1,12 +1,14 @@
 import Head from 'next/head';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
+import Image from 'next/image'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Box, Button, Container, Grid, Link, TextField, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Facebook as FacebookIcon } from '../icons/facebook';
 import { Google as GoogleIcon } from '../icons/google';
+import logo from '../../public/static/images/iconlogo.png'
 
 const Login = () => {
   const router = useRouter();
@@ -37,7 +39,7 @@ const Login = () => {
   return (
     <>
       <Head>
-        <title>Login | Material Kit</title>
+        <title>Login | Barista CRM</title>
       </Head>
       <Box
         component="main"
@@ -49,19 +51,10 @@ const Login = () => {
         }}
       >
         <Container maxWidth="sm">
-          <NextLink
-            href="/"
-            passHref
-          >
-            <Button
-              component="a"
-              startIcon={<ArrowBackIcon fontSize="small" />}
-            >
-              Dashboard
-            </Button>
-          </NextLink>
+         
           <form onSubmit={formik.handleSubmit}>
             <Box sx={{ my: 3 }}>
+             
               <Typography
                 color="textPrimary"
                 variant="h4"
@@ -73,7 +66,7 @@ const Login = () => {
                 gutterBottom
                 variant="body2"
               >
-                Sign in on the internal platform
+                Sign in to the Barista CRM internal platform
               </Typography>
             </Box>
             <Grid
@@ -165,7 +158,7 @@ const Login = () => {
                 Sign In Now
               </Button>
             </Box>
-            <Typography
+            {/* <Typography
               color="textSecondary"
               variant="body2"
             >
@@ -185,7 +178,7 @@ const Login = () => {
                   Sign Up
                 </Link>
               </NextLink>
-            </Typography>
+            </Typography> */}
           </form>
         </Container>
       </Box>
