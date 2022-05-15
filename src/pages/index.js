@@ -16,6 +16,7 @@ import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import Container from '@mui/material/Container';
+import {useAuth} from '../context/AuthContext.tsx';
 
 function Copyright(props) {
     return (
@@ -93,6 +94,9 @@ function Copyright(props) {
   ];
 
 const Homepage = () => {
+
+  const {user, logout} = useAuth();
+
     return(
 <>
     <Head>
@@ -138,9 +142,21 @@ const Homepage = () => {
               Support
             </Link>
           </nav>
-          <Button href="/login" variant="outlined" sx={{ my: 1, mx: 1.5 }}>
-            Login
-          </Button>
+          {user ? (
+              <Button  variant="outlined" sx={{ my: 1, mx: 1.5 }} onClick={() => logout()}>
+              Logout
+              </Button>
+          ) : (
+            <Box>
+              <Button href="/login" variant="outlined" sx={{ my: 1, mx: 1.5 }}>
+              Login
+              </Button>
+
+               <Button href="/register" variant="outlined" sx={{ my: 1, mx: 1.5 }}>
+               Register
+               </Button>
+              </Box>
+          )}
         </Toolbar>
       </AppBar>
       <Box

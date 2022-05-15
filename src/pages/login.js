@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { useState } from 'react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import Image from 'next/image'
@@ -9,13 +10,19 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Facebook as FacebookIcon } from '../icons/facebook';
 import { Google as GoogleIcon } from '../icons/google';
 import logo from '../../public/static/images/iconlogo.png'
+import { useAuth, login } from '../context/AuthContext.tsx';
 
 const Login = () => {
   const router = useRouter();
+  const {user, login} = useAuth();
+  const [data,setData] = useState({
+    email:'',
+    password:''
+})
   const formik = useFormik({
     initialValues: {
-      email: 'demo@devias.io',
-      password: 'Password123'
+      email: '',
+      password: ''
     },
     validationSchema: Yup.object({
       email: Yup
@@ -32,10 +39,23 @@ const Login = () => {
           'Password is required')
     }),
     onSubmit: () => {
-      router.push('/');
+      handleLogin();
     }
   });
 
+  const handleLogin = async () => {
+    console.log(user)
+    const email = formik.values.email;
+    const password = formik.values.password;
+    try {
+      await login(email,password);
+      router.push('/dashboard');
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+ 
   return (
     <>
       <Head>
@@ -158,7 +178,7 @@ const Login = () => {
                 Sign In Now
               </Button>
             </Box>
-            {/* <Typography
+            <Typography
               color="textSecondary"
               variant="body2"
             >
@@ -178,7 +198,7 @@ const Login = () => {
                   Sign Up
                 </Link>
               </NextLink>
-            </Typography> */}
+            </Typography>
           </form>
         </Container>
       </Box>
