@@ -18,16 +18,16 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { SeverityPill } from '../severity-pill';
 
 const orders = [
-  {
-    id: uuid(),
-    ref: 'CDD1049',
-    amount: 600,
-    customer: {
-      name: 'Test Customer'
-    },
-    createdAt: 1555016400000,
-    status: 'pending'
-  },
+  // {
+  //   id: uuid(),
+  //   ref: 'CDD1049',
+  //   amount: 600,
+  //   customer: {
+  //     name: 'Test Customer'
+  //   },
+  //   createdAt: 1555016400000,
+  //   status: 'pending'
+  // },
  
 ];
 

@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import { useAuth } from '../context/AuthContext.tsx';
+import { useAuth } from '../context/AuthContext';
 import { useRouter } from 'next/router';
 
 const ProtectedRoute = ({children} : {children: React.ReactNode}) => {

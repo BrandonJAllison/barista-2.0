@@ -16,14 +16,7 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 const products = [
-  {
-    id: uuid(),
-    createdAt: '27/03/2019',
-    description: 'Ace of Games website was created for a Ace of Games axe throwing in Elysburg, PA',
-    media: '/static/images/websites/website_1.png',
-    title: 'Ace of Games',
-    
-  },
+
 
 ];
 

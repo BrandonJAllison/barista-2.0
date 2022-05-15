@@ -6,16 +6,16 @@ import { Box, Divider, Drawer, Typography, useMediaQuery } from '@mui/material';
 import LanguageIcon from '@mui/icons-material/Language';
 import { ChartBar as ChartBarIcon } from '../icons/chart-bar';
 import { Cog as CogIcon } from '../icons/cog';
-import { Lock as LockIcon } from '../icons/lock';
+import InventoryIcon from '@mui/icons-material/Inventory';
 import { Selector as SelectorIcon } from '../icons/selector';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import { User as UserIcon } from '../icons/user';
-import { UserAdd as UserAddIcon } from '../icons/user-add';
-import { Users as UsersIcon } from '../icons/users';
-import { XCircle as XCircleIcon } from '../icons/x-circle';
+import PeopleIcon from '@mui/icons-material/People';
+import ContactsIcon from '@mui/icons-material/Contacts';
 import  logo  from '../../public/static/images/iconlogo.png';
 import Image from 'next/image'
 import { NavItem } from './nav-item';
+
 
 const items = [
   {
@@ -25,8 +25,13 @@ const items = [
   },
   {
     href: '/customers',
-    icon: (<UsersIcon fontSize="small" />),
+    icon: (<ContactsIcon fontSize="small" />),
     title: 'Customers'
+  },
+  {
+    href: '/leads',
+    icon: (<PeopleIcon fontSize="small" />),
+    title: 'Leads'
   },
   {
     href: '/tasks',
@@ -39,6 +44,11 @@ const items = [
     title: 'Websites'
   },
   {
+    href: '/orders',
+    icon: (<InventoryIcon fontSize="small"/>),
+    title: 'Orders'
+  },
+  {
     href: '/account',
     icon: (<UserIcon fontSize="small" />),
     title: 'My Account'
@@ -48,22 +58,14 @@ const items = [
     icon: (<CogIcon fontSize="small" />),
     title: 'Settings'
   },
-  {
-    href: '/register',
-    icon: (<UserAddIcon fontSize="small" />),
-    title: 'Register User'
-  },
-  {
-    href: '/login',
-    icon: (<LockIcon fontSize="small" />),
-    title: 'Log Out'
-  },
+  
  
 ];
 
 export const DashboardSidebar = (props) => {
   const { open, onClose } = props;
   const router = useRouter();
+
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'), {
     defaultMatches: true,
     noSsr: false

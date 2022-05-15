@@ -21,7 +21,7 @@ export const TotalProfit = (props) => (
             color="textPrimary"
             variant="h4"
           >
-            $23k
+            $0.00
           </Typography>
         </Grid>
         <Grid item>
