@@ -13,16 +13,14 @@ import db from '../firebase'
 const Customers = () => {
 
   const [customers, setCustomers] = useState([]);
-  console.log(customers)
+
   useEffect(() => {
       
        onSnapshot(collection(db, 'customers'),(snapshot) => {
-        setCustomers(snapshot.docs.map(doc => ({...doc.data(), id:doc.id})))
-        
+        setCustomers(snapshot.docs.map(doc => ({...doc.data(), id:doc.id})))  
       });
 
-    
-    }, []);
+    }, [customers]);
 return(
   <>
   <Head>

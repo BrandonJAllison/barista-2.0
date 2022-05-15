@@ -48,12 +48,11 @@ const Register = () => {
         .max(255)
         .required(
           'Password is required'),
-      policy: Yup
-        .boolean()
-        .oneOf(
-          [true],
-          'This field must be checked'
-        )
+      position: Yup
+        .string()
+        .max(255)
+        .required(
+          'Position is required'),
     }),
     onSubmit: () => {
       router.push('/');
@@ -94,14 +93,14 @@ const Register = () => {
                 color="textPrimary"
                 variant="h4"
               >
-                Create a new account
+                Create A New User Account
               </Typography>
               <Typography
                 color="textSecondary"
                 gutterBottom
                 variant="body2"
               >
-                Use your email to create a new account
+                Creating a User Will Grant Them Access To The Barista CRM
               </Typography>
             </Box>
             <TextField
@@ -126,6 +125,18 @@ const Register = () => {
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
               value={formik.values.lastName}
+              variant="outlined"
+            />
+            <TextField
+              error={Boolean(formik.touched.position && formik.errors.position)}
+              fullWidth
+              helperText={formik.touched.position && formik.errors.position}
+              label="Position"
+              margin="normal"
+              name="position"
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              value={formik.values.position}
               variant="outlined"
             />
             <TextField
@@ -161,30 +172,6 @@ const Register = () => {
                 ml: -1
               }}
             >
-              <Checkbox
-                checked={formik.values.policy}
-                name="policy"
-                onChange={formik.handleChange}
-              />
-              <Typography
-                color="textSecondary"
-                variant="body2"
-              >
-                I have read the
-                {' '}
-                <NextLink
-                  href="#"
-                  passHref
-                >
-                  <Link
-                    color="primary"
-                    underline="always"
-                    variant="subtitle2"
-                  >
-                    Terms and Conditions
-                  </Link>
-                </NextLink>
-              </Typography>
             </Box>
             {Boolean(formik.touched.policy && formik.errors.policy) && (
               <FormHelperText error>
@@ -200,27 +187,10 @@ const Register = () => {
                 type="submit"
                 variant="contained"
               >
-                Sign Up Now
+                Register New User
               </Button>
             </Box>
-            <Typography
-              color="textSecondary"
-              variant="body2"
-            >
-              Have an account?
-              {' '}
-              <NextLink
-                href="/login"
-                passHref
-              >
-                <Link
-                  variant="subtitle2"
-                  underline="hover"
-                >
-                  Sign In
-                </Link>
-              </NextLink>
-            </Typography>
+         
           </form>
         </Container>
       </Box>

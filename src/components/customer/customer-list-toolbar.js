@@ -9,19 +9,23 @@ import {
   Typography,
   Backdrop,
   Modal, 
-  Fade 
+  Fade,
 } from '@mui/material';
 import { Search as SearchIcon } from '../../icons/search';
 import { Upload as UploadIcon } from '../../icons/upload';
 import { Download as DownloadIcon } from '../../icons/download';
 import {useState} from 'react'
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { addDoc, collection } from "firebase/firestore";
+import db from '../../firebase'
 
-const style = {
+const modal = {
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: 700,
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
@@ -33,32 +37,154 @@ export const CustomerListToolbar = (props) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => { setOpen(true) };
   const handleClose = () => setOpen(false);
+  const colRef = collection(db, 'customers');
+
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      businessName: '',
+      phone: '',
+      location: '',
+      projectManager:''
+    },
+    validationSchema: Yup.object({
+      email: Yup
+        .string()
+        .email(
+          'Must be a valid email')
+        .max(255)
+        .required(
+          'Email is required'),
+      businessName: Yup
+        .string()
+        .max(255)
+        .required(
+          'Business Name is required'),
+      phone: Yup
+        .string()
+        .max(255)
+        .required(
+          'Phone is required'),
+      location: Yup
+        .string()
+        .max(255)
+        .required(
+          'Location is required'),
+      projectManager: Yup
+          .string()
+          .max(255)
+          .required(
+            'Project Manager is required'),
+      
+    }),
+
+    onSubmit: (e) => {
+      addDoc(colRef, {
+        email: formik.values.email,
+        name: formik.values.businessName,
+        phone: formik.values.phone,
+        location: formik.values.location,
+        project_manager: formik.values.projectManager
+      });
+    }
+  });
+
  
   return(
   <Box {...props}>
 
-<Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
+    <Modal
+    aria-labelledby="transition-modal-title"
+    aria-describedby="transition-modal-description"
+    open={open}
+    onClose={handleClose}
+    closeAfterTransition
+    BackdropComponent={Backdrop}
+    BackdropProps={{
+      timeout: 500,
+    }}
+    >
         <Fade in={open}>
-          <Box sx={style}>
-            <Typography id="transition-modal-title" variant="h6" component="h2">
-              Text in a modal
-            </Typography>
-            <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </Typography>
+          <Box sx={modal}>
+          <form onSubmit={formik.handleSubmit}>
+          <TextField
+              error={Boolean(formik.touched.businessName && formik.errors.businessName)}
+              fullWidth
+              helperText={formik.touched.firstName && formik.errors.firstName}
+              label="Business Name"
+              margin="normal"
+              name="businessName"
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              value={formik.values.businessName}
+              variant="outlined"
+            />
+            <TextField
+              error={Boolean(formik.touched.phone && formik.errors.phone)}
+              fullWidth
+              helperText={formik.touched.phone && formik.errors.phone}
+              label="Phone"
+              margin="normal"
+              name="phone"
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              value={formik.values.phone}
+              variant="outlined"
+            />
+            <TextField
+              error={Boolean(formik.touched.email && formik.errors.email)}
+              fullWidth
+              helperText={formik.touched.email && formik.errors.email}
+              label="Email Address"
+              margin="normal"
+              name="email"
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              type="email"
+              value={formik.values.email}
+              variant="outlined"
+            />
+            <TextField
+              error={Boolean(formik.touched.location && formik.errors.location)}
+              fullWidth
+              helperText={formik.touched.location && formik.errors.location}
+              label="Location"
+              margin="normal"
+              name="location"
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              value={formik.values.location}
+              variant="outlined"
+            />
+             <TextField
+              error={Boolean(formik.touched.projectManager && formik.errors.projectManager)}
+              fullWidth
+              helperText={formik.touched.projectManager && formik.errors.projectManager}
+              label="Project Manager"
+              margin="normal"
+              name="projectManager"
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              value={formik.values.projectManager}
+              variant="outlined"
+            />
+              <Box sx={{ py: 2 }}>
+             
+            </Box>
+            <Button
+                color="primary"
+                disabled={formik.isSubmitting}
+                fullWidth
+                size="large"
+                type="submit"
+                variant="contained"
+              >
+                Create Customer Account
+              </Button>
+              </form>
           </Box>
         </Fade>
-      </Modal>
+    </Modal>
 
     <Box
       sx={{

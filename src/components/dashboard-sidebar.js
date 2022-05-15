@@ -44,15 +44,16 @@ const items = [
     title: 'Settings'
   },
   {
+    href: '/register',
+    icon: (<UserAddIcon fontSize="small" />),
+    title: 'Register User'
+  },
+  {
     href: '/login',
     icon: (<LockIcon fontSize="small" />),
     title: 'Log Out'
   },
-  // {
-  //   href: '/register',
-  //   icon: (<UserAddIcon fontSize="small" />),
-  //   title: 'Register'
-  // },
+ 
   // {
   //   href: '/404',
   //   icon: (<XCircleIcon fontSize="small" />),
@@ -99,14 +100,21 @@ export const DashboardSidebar = (props) => {
             
             >
               <a>
+                <div    style={{
+              display: "flex",
+              justifyContent: "center",
+            }}>
                 <Image 
                   src={logo}
-                  sx={{
-                    px:1
-                  }}
+                  height={75}
+                  width={75}
                 />
+                
+                </div>
               </a>
+            
             </NextLink>
+            
           </Box>
           <Box sx={{ px: 2 }}>
             <Box
@@ -128,14 +136,14 @@ export const DashboardSidebar = (props) => {
                 >
                   Cup O Code 
                 </Typography>
-                <Typography
+                {/* <Typography
                   color="neutral.400"
                   variant="body2"
                 >
                   Your tier
                   {' '}
                   : Premium
-                </Typography>
+                </Typography> */}
               </div>
               <SelectorIcon
                 sx={{
