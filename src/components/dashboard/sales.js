@@ -29,7 +29,7 @@ export const Sales = (props) => {
         maxBarThickness: 10
       }
     ],
-    labels: ['1 Aug', '2 Aug', '3 Aug', '4 Aug', '5 Aug', '6 Aug', '7 aug']
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept.', 'Oct.', 'Nov.', 'Dec.']
   };
 
   const options = {
@@ -92,7 +92,7 @@ export const Sales = (props) => {
             Last 7 days
           </Button>
         )}
-        title="Latest Sales"
+        title="Monthly Income"
       />
       <Divider />
       <CardContent>

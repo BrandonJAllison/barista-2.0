@@ -18,6 +18,7 @@ import {
 import { getInitials } from '../../utils/get-initials';
 
 export const CustomerListResults = ({ customers, ...rest }) => {
+
   const [selectedCustomerIds, setSelectedCustomerIds] = useState([]);
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(0);
@@ -93,12 +94,12 @@ export const CustomerListResults = ({ customers, ...rest }) => {
                   Phone
                 </TableCell>
                 <TableCell>
-                  Registration date
+                 Project Manager
                 </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {customers.slice(0, limit).map((customer) => (
+              {customers && customers.map((customer) => (
                 <TableRow
                   hover
                   key={customer.id}
@@ -136,13 +137,13 @@ export const CustomerListResults = ({ customers, ...rest }) => {
                     {customer.email}
                   </TableCell>
                   <TableCell>
-                    {`${customer.address.city}, ${customer.address.state}, ${customer.address.country}`}
+                    {customer.location}
                   </TableCell>
                   <TableCell>
                     {customer.phone}
                   </TableCell>
                   <TableCell>
-                    {format(customer.createdAt, 'dd/MM/yyyy')}
+                    {customer.project_manager}
                   </TableCell>
                 </TableRow>
               ))}

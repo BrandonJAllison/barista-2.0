@@ -8,7 +8,7 @@ const Settings = () => (
   <>
     <Head>
       <title>
-        Settings | Material Kit
+        Settings | Barista
       </title>
     </Head>
     <Box

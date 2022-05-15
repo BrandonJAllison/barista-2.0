@@ -1,9 +1,12 @@
+
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
+import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
+
 const firebaseConfig = {
   apiKey: "AIzaSyAsWLop_-AY81_tftfEIY8x1ztMzU3FfUs",
   authDomain: "barista-aa2ec.firebaseapp.com",
@@ -14,4 +17,10 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
+
 const app = initializeApp(firebaseConfig);
+export default getFirestore();
+export const db = getFirestore(app);
+
+
+
