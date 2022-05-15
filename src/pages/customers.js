@@ -6,7 +6,7 @@ import { CustomerListToolbar } from '../components/customer/customer-list-toolba
 import { DashboardLayout } from '../components/dashboard-layout';
 import { collection, query, where, onSnapshot } from "firebase/firestore";
 import db from '../firebase'
-// import { customers } from '../__mocks__/customers';
+
 
 
 

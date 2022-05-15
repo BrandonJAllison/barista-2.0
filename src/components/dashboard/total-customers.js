@@ -1,8 +1,24 @@
+import {useState, useEffect} from 'react';
 import { Avatar, Box, Card, CardContent, Grid, Typography } from '@mui/material';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import PeopleIcon from '@mui/icons-material/PeopleOutlined';
+import { collection, query, where, onSnapshot } from "firebase/firestore";
+import db from '../../firebase';
 
-export const TotalCustomers = (props) => (
+export const TotalCustomers = (props) => {
+
+  const [customers, setCustomers] = useState([]);
+
+  useEffect(() => {
+      
+       onSnapshot(collection(db, 'customers'),(snapshot) => {
+        setCustomers(snapshot.docs.map(doc => ({...doc.data(), id:doc.id})))  
+      });
+
+    }, [customers]);
+
+    return(
+
   <Card {...props}>
     <CardContent>
       <Grid
@@ -22,7 +38,7 @@ export const TotalCustomers = (props) => (
             color="textPrimary"
             variant="h4"
           >
-            56
+            {customers.length}
           </Typography>
         </Grid>
         <Grid item>
@@ -41,10 +57,10 @@ export const TotalCustomers = (props) => (
         sx={{
           alignItems: 'center',
           display: 'flex',
-          pt: 2
+          pt: 5
         }}
       >
-        <ArrowUpwardIcon color="success" />
+        {/* <ArrowUpwardIcon color="success" />
         <Typography
           variant="body2"
           sx={{
@@ -58,8 +74,8 @@ export const TotalCustomers = (props) => (
           variant="caption"
         >
           Since last month
-        </Typography>
+        </Typography> */}
       </Box>
     </CardContent>
   </Card>
-);
+)};

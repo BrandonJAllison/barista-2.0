@@ -14,6 +14,17 @@ import {
   Typography
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import {
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
+import {auth} from '../firebase'
+import { addDoc, collection, setDoc } from "firebase/firestore";
+import db from '../firebase'
+
+
+
+
+
 
 const Register = () => {
   const router = useRouter();
@@ -23,7 +34,7 @@ const Register = () => {
       firstName: '',
       lastName: '',
       password: '',
-      policy: false
+      position:'',
     },
     validationSchema: Yup.object({
       email: Yup
@@ -54,9 +65,21 @@ const Register = () => {
         .required(
           'Position is required'),
     }),
+
     onSubmit: () => {
-      router.push('/');
-    }
+      const email = formik.values.email;
+      const password = formik.values.password;
+      createUserWithEmailAndPassword(auth, email, password)
+      const user = auth.currentUser;
+      addDoc(collection(db, 'users'), {
+        id: user.uid,
+        email: formik.values.email,
+        firstName: formik.values.firstName,
+        lastName: formik.values.lastName,
+        position: formik.values.position,
+    })
+   },
+ 
   });
 
   return (

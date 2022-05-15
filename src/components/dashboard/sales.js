@@ -89,7 +89,7 @@ export const Sales = (props) => {
             endIcon={<ArrowDropDownIcon fontSize="small" />}
             size="small"
           >
-            Last 7 days
+            2022
           </Button>
         )}
         title="Monthly Income"

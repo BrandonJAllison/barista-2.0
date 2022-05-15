@@ -12,7 +12,7 @@ import { Download as DownloadIcon } from '../../icons/download';
 import { Search as SearchIcon } from '../../icons/search';
 import { Upload as UploadIcon } from '../../icons/upload';
 
-export const ProductListToolbar = (props) => (
+export const WebsiteListToolbar = (props) => (
   <Box {...props}>
     <Box
       sx={{
@@ -27,7 +27,7 @@ export const ProductListToolbar = (props) => (
         sx={{ m: 1 }}
         variant="h4"
       >
-        Products
+        Websites
       </Typography>
       <Box sx={{ m: 1 }}>
         <Button
@@ -46,7 +46,7 @@ export const ProductListToolbar = (props) => (
           color="primary"
           variant="contained"
         >
-          Add products
+          Add A Website
         </Button>
       </Box>
     </Box>
@@ -68,7 +68,7 @@ export const ProductListToolbar = (props) => (
                   </InputAdornment>
                 )
               }}
-              placeholder="Search product"
+              placeholder="Search Websites"
               variant="outlined"
             />
           </Box>

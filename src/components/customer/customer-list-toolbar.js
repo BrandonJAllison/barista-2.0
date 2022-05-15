@@ -78,7 +78,7 @@ export const CustomerListToolbar = (props) => {
       
     }),
 
-    onSubmit: (e) => {
+    onSubmit: () => {
       addDoc(colRef, {
         email: formik.values.email,
         name: formik.values.businessName,

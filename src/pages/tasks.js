@@ -6,7 +6,7 @@ import { Box, Container, Grid, Pagination } from '@mui/material';
 import { DashboardLayout } from '../components/dashboard-layout';
 
 
-const Products = () => {
+const Tasks = () => {
   
   <>
     <Head>
@@ -29,10 +29,10 @@ const Products = () => {
   </>
 };
 
-Products.getLayout = (page) => (
+Tasks.getLayout = (page) => (
   <DashboardLayout>
     {page}
   </DashboardLayout>
 );
 
-export default Products;
+export default Tasks;

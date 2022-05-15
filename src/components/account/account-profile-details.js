@@ -12,26 +12,19 @@ import {
 
 const states = [
   {
-    value: 'alabama',
-    label: 'Alabama'
+    value: 'pennsylvania',
+    label: 'Pennsylvania'
   },
-  {
-    value: 'new-york',
-    label: 'New York'
-  },
-  {
-    value: 'san-francisco',
-    label: 'San Francisco'
-  }
+
 ];
 
 export const AccountProfileDetails = (props) => {
   const [values, setValues] = useState({
-    firstName: 'Katarina',
-    lastName: 'Smith',
-    email: 'demo@devias.io',
-    phone: '',
-    state: 'Alabama',
+    firstName: 'Nick',
+    lastName: 'Yost',
+    email: 'nick@cupocode.com',
+    phone: '570-850-8020',
+    state: 'Pennsylvania',
     country: 'USA'
   });
 

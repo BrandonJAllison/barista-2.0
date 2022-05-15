@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import { Box, Button, Divider, Drawer, Typography, useMediaQuery } from '@mui/material';
-import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import { Box, Divider, Drawer, Typography, useMediaQuery } from '@mui/material';
+import LanguageIcon from '@mui/icons-material/Language';
 import { ChartBar as ChartBarIcon } from '../icons/chart-bar';
 import { Cog as CogIcon } from '../icons/cog';
 import { Lock as LockIcon } from '../icons/lock';
@@ -19,7 +19,7 @@ import { NavItem } from './nav-item';
 
 const items = [
   {
-    href: '/',
+    href: '/dashboard',
     icon: (<ChartBarIcon fontSize="small" />),
     title: 'Dashboard'
   },
@@ -29,9 +29,14 @@ const items = [
     title: 'Customers'
   },
   {
-    href: '/products',
+    href: '/tasks',
     icon: (<TaskAltIcon fontSize="small" />),
     title: 'Tasks'
+  },
+  {
+    href: '/websites',
+    icon: (<LanguageIcon fontSize="small" />),
+    title: 'Websites'
   },
   {
     href: '/account',
@@ -54,11 +59,6 @@ const items = [
     title: 'Log Out'
   },
  
-  // {
-  //   href: '/404',
-  //   icon: (<XCircleIcon fontSize="small" />),
-  //   title: 'Error'
-  // }
 ];
 
 export const DashboardSidebar = (props) => {
