@@ -27,7 +27,7 @@ export const CustomerListResults = ({ customers, ...rest }) => {
   const [page, setPage] = useState(0);
 
   const handleSelectAll = (event) => {
-    let newSelectedCustomerIds;
+    let newSelectedCustomerIds = [];
 
     if (event.target.checked) {
       newSelectedCustomerIds = customers.map((customer) => customer.id);
@@ -36,11 +36,14 @@ export const CustomerListResults = ({ customers, ...rest }) => {
     }
 
     setSelectedCustomerIds(newSelectedCustomerIds);
+    console.log(selectedCustomerIds)
     
   };
 
   const handleSelectOne = (event, id) => {
     const selectedIndex = selectedCustomerIds.indexOf(id);
+
+    console.log(selectedCustomerIds);
     let newSelectedCustomerIds = [];
 
     if (selectedIndex === -1) {
@@ -57,7 +60,7 @@ export const CustomerListResults = ({ customers, ...rest }) => {
     }
 
     setSelectedCustomerIds(newSelectedCustomerIds);
-    console.log(newSelectedCustomerIds);
+  
   };
 
   const handleLimitChange = (event) => {
@@ -68,12 +71,12 @@ export const CustomerListResults = ({ customers, ...rest }) => {
     setPage(newPage);
   };
 
-  // const deleteSelected = (selectedCustomerIds) => {
-   
-  //   selectedCustomerIds && seclectedCustomerIds.forEach(id => {
-  //     deleteDoc(db, 'customers', id);
-  //   });
-  // }
+  const deleteSelected = (selectedCustomerIds) => {
+    selectedCustomerIds && selectedCustomerIds.forEach(id => {
+      const docRef = doc(db, 'customers', {id});
+      deleteDoc(docRef);
+    });
+  }
 
   return (
     <Card {...rest}>
@@ -84,7 +87,7 @@ export const CustomerListResults = ({ customers, ...rest }) => {
               <TableRow>
                 <TableCell padding="checkbox">
                   <Checkbox
-                    checked={selectedCustomerIds.length === customers.length}
+                    checked={selectedCustomerIds && selectedCustomerIds.length === customers.length}
                     color="primary"
                     indeterminate={
                       selectedCustomerIds.length > 0

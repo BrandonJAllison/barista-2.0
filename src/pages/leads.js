@@ -1,38 +1,54 @@
 import Head from 'next/head';
 import {useState, useEffect} from 'react'
 import { Box, Container} from '@mui/material';
-import { CustomerListResults } from '../components/customer/customer-list-results';
-import { CustomerListToolbar } from '../components/customer/customer-list-toolbar';
+import { LeadListResults } from '../components/leads/leads-list-results';
+import { LeadListToolbar } from '../components/leads/leads-list-toolbar';
 import { DashboardLayout } from '../components/dashboard-layout';
 import { collection, query, where, onSnapshot } from "firebase/firestore";
 import db from '../firebase'
 
+
 const Leads = () => {
 
-    const [leads, setLeads] = useState([]);
+  const [leads, setleads] = useState([]);
 
-    useEffect(() => {
+  useEffect(() => {
       
-        onSnapshot(collection(db, 'leads'),(snapshot) => {
-         setLeads(snapshot.docs.map(doc => ({...doc.data(), id:doc.id})))  
-       });
- 
-     }, [leads]);
+       onSnapshot(collection(db, 'leads'),(snapshot) => {
+        setleads(snapshot.docs.map(doc => ({...doc.data(), id:doc.id})))  
+      });
 
-    
-    
-    return (
-    <>
-    
-    </>
-     );  
-    }
-
+    }, [leads]);
+return(
+  <>
+  <Head>
+    <title>
+      Leads | Barista CRM
+    </title>
+  </Head>
+  <Box
+    component="main"
+    sx={{
+      flexGrow: 1,
+      py: 8
+    }}
+  >
+    <Container maxWidth={false}>
+      <LeadListToolbar/>
+      <Box sx={{ mt: 3 }}>
+        <LeadListResults leads={leads && leads} />
+      </Box>
+    </Container>
+  </Box>
+</>
+);
+  }
 Leads.getLayout = (page) => (
 <DashboardLayout>
-{page}
+  {page}
 </DashboardLayout>
 );
 
+ 
 
 export default Leads;

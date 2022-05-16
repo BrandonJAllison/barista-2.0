@@ -37,7 +37,7 @@ export const CustomerListToolbar = (props) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => { setOpen(true) };
   const handleClose = () => setOpen(false);
-  const colRef = collection(db, 'customers');
+  const colRef = collection(db, 'leads');
 
   const formik = useFormik({
     initialValues: {
@@ -199,7 +199,7 @@ export const CustomerListToolbar = (props) => {
         sx={{ m: 1 }}
         variant="h4"
       >
-        Customers
+       Customers
       </Typography>
       <Box sx={{ m: 1 }}>
         <Button
@@ -219,7 +219,7 @@ export const CustomerListToolbar = (props) => {
           color="primary"
           variant="contained"
         >
-          Add Customers
+          Add Customer
         </Button>
       </Box>
     </Box>
