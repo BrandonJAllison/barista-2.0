@@ -16,6 +16,9 @@ import {
   Typography
 } from '@mui/material';
 import { getInitials } from '../../utils/get-initials';
+import { doc, deleteDoc } from "firebase/firestore";
+import db from '../../firebase';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 export const CustomerListResults = ({ customers, ...rest }) => {
 
@@ -33,6 +36,7 @@ export const CustomerListResults = ({ customers, ...rest }) => {
     }
 
     setSelectedCustomerIds(newSelectedCustomerIds);
+    
   };
 
   const handleSelectOne = (event, id) => {
@@ -53,6 +57,7 @@ export const CustomerListResults = ({ customers, ...rest }) => {
     }
 
     setSelectedCustomerIds(newSelectedCustomerIds);
+    console.log(newSelectedCustomerIds);
   };
 
   const handleLimitChange = (event) => {
@@ -62,6 +67,13 @@ export const CustomerListResults = ({ customers, ...rest }) => {
   const handlePageChange = (event, newPage) => {
     setPage(newPage);
   };
+
+  // const deleteSelected = (selectedCustomerIds) => {
+   
+  //   selectedCustomerIds && seclectedCustomerIds.forEach(id => {
+  //     deleteDoc(db, 'customers', id);
+  //   });
+  // }
 
   return (
     <Card {...rest}>
@@ -95,6 +107,9 @@ export const CustomerListResults = ({ customers, ...rest }) => {
                 </TableCell>
                 <TableCell>
                  Project Manager
+                </TableCell>
+                <TableCell>
+                
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -145,8 +160,22 @@ export const CustomerListResults = ({ customers, ...rest }) => {
                   <TableCell>
                     {customer.project_manager}
                   </TableCell>
+
+                  {selectedCustomerIds.includes(customer.id) ? (
+                      
+                      <DeleteForeverIcon fontSize="small" onClick={() => deleteSelected()}/>
+                      
+                       
+                    ) : (
+                       null
+                      )}
                 </TableRow>
+
+                
+                
+
               ))}
+
             </TableBody>
           </Table>
         </Box>
