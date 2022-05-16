@@ -8,8 +8,6 @@ import { collection, query, where, onSnapshot } from "firebase/firestore";
 import db from '../firebase'
 
 
-
-
 const Customers = () => {
 
   const [customers, setCustomers] = useState([]);

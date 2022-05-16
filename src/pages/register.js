@@ -22,10 +22,6 @@ import { addDoc, collection, setDoc } from "firebase/firestore";
 import db from '../firebase'
 
 
-
-
-
-
 const Register = () => {
   const router = useRouter();
   const formik = useFormik({
