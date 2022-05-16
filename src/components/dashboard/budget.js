@@ -25,7 +25,7 @@ export const Budget = (props) => (
             color="textPrimary"
             variant="h4"
           >
-            $24k
+            $0.00
           </Typography>
         </Grid>
         <Grid item>
@@ -47,15 +47,15 @@ export const Budget = (props) => (
           alignItems: 'center'
         }}
       >
-        <ArrowDownwardIcon color="error" />
+        <ArrowDownwardIcon color="success" />
         <Typography
-          color="error"
+          color="success"
           sx={{
             mr: 1
           }}
           variant="body2"
         >
-          12%
+          0%
         </Typography>
         <Typography
           color="textSecondary"
